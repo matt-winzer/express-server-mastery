@@ -9,17 +9,12 @@ let studentsRoutes = require('./routes/students');
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/', (req, res) => res.send(`Server is running on ${port}`))
 app.use('/cakes', cakesRoutes);
 app.use('/students', studentsRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
-
-
-
-
-
-
 
 function notFound(err, req, res, next) {
   res.status(404).send({error: 'Not found!', status: 404, url: req.originalUrl})
